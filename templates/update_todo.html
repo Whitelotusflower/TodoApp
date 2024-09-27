@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+    <form action="{% url 'todoapp:update_todo_view' item_to_update.id%}" method="post">
+        <label>updating {{item_to_update.name}} </label>
+        {% csrf_token %}
+            
+        {% for msg in messages %}
+        <p style="color: red;">{{ msg }}</p>
+        {% endfor %}
+        <input type="text" name="item" id="" value="{{item_to_update.name}}">
+        <button type="submit">Update</button>
+        <p>item ID: {{item_to_update.id}}</p>
+        <p>item name: {{item_to_update.name}}</p>
+        <p>date added: {{item_to_update.date_added}}</p>
+        <p>completed: {{item_to_update.completed}}</p>
+    </form>
+
+</body>
+</html>
